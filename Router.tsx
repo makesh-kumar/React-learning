@@ -1,21 +1,38 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+import {
+  BrowserRouter,
+  Route,
+  Switch,
+  Link,
+  useHistory,
+} from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 
 const Home = (props) => {
   return <h2>HOME</h2>;
 };
 
-const cc = ()=> {
- console.log("SSSS")
-}
+const cc = () => {
+  console.log('SSSS');
+};
 
 const Login = (props) => {
   console.log(props);
-
-
-  return <h2 onClick={cc}>LOGIN</h2>;
+  const navigate = (p) => {
+    props.history.push('/');
+  };
+  return (
+    <div>
+      <div>
+        <p>Routing using functions</p>
+        <button onClick={navigate}>Home</button>
+        <button>Login</button>
+        <button>Settings</button>
+      </div>
+      <h2 onClick={cc}>LOGIN</h2>
+    </div>
+  );
 };
 const LoginWithId = (props) => {
   console.log(props);
@@ -27,8 +44,6 @@ const Settings = (props) => {
 };
 
 const PageNotFound = (props) => {
-  
-
   return <h2>Page Not Found</h2>;
 };
 interface AppProps {
@@ -45,12 +60,6 @@ export class Router extends Component<AppProps, AppState> {
     console.log('P', props);
   }
 
-  navigate = (p) => {
-    // console.log(p);
-    console.log(this.props);
-    // this.props.history.push('/login');
-    // this.props.history.push("/login")
-  };
   routes = [
     { name: 'Home', path: '/' },
     { name: 'Login', path: '/login' },
@@ -70,13 +79,6 @@ export class Router extends Component<AppProps, AppState> {
           <hr />
         </div>
 
-        <div>
-          <p>Routing using functions</p>
-          <button onClick={this.navigate}>Home</button>
-          <button>Login</button>
-          <button>Settings</button>
-        </div>
-
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
@@ -92,4 +94,4 @@ export class Router extends Component<AppProps, AppState> {
     );
   }
 }
-export default withRouter(Router);
+withRouter(Router);

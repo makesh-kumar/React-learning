@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import { Hello } from './Hello';
 import { Router } from './Router';
 import Func from './Func';
+import Provider from 'react-redux';
 
 import './style.css';
 import axios from 'axios';
@@ -52,9 +53,7 @@ class App extends Component<AppProps, AppState> {
           {this.state.resp.title}
           <p>Start editing to see some magic happen :)</p>
 
-          <Func />
-
-          {/* <Router /> */}
+              <Router />
         </div>
       </BrowserRouter>
     );
